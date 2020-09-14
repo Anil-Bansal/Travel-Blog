@@ -74,10 +74,22 @@ WSGI_APPLICATION = 'TravelBlog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+
+# go to \ENV\test\lib\site-packages\pymongo
+# notepad mongo_client.py
+# Put HOST='mongodb+srv://user:crank@cluster0.zbcu1.mongodb.net/places_db?retryWrites=true&w=majority' 
+# pip install dnspython
+# python manage.py migrate
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        "CLIENT": {
+            'name': 'places_db',
+            'host': 'mongodb+srv://user:crank@cluster0.zbcu1.mongodb.net/places_db?retryWrites=true&w=majority',
+            'username': 'user',
+            'password': 'crank',
+            'authMechanism': 'SCRAM-SHA-1',
+        },
     }
 }
 
