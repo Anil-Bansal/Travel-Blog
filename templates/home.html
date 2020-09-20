@@ -4,6 +4,19 @@
         <title>Registration</title>
     </head>
     <body>
-        <h1> Hello</h1>
+        
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="">Profile</a></li>
+            <li><a href="">Add Blog</a></li>
+            <li>Hello, {{user.username}}</li>
+        </ul>
+        {% for blog in blogs %}
+            
+			<p>{{blog.title}}</p>
+			<p>{{blog.description}}</p>
+			<p>By {{blog.username}}</p>
+		{% endfor %}
+        
     </body>
 </html> 

@@ -18,7 +18,7 @@ def register(request):
             else:
                 user=User(username=username, password=password1)
                 user.save()
-                return redirect('/home')
+                return redirect('/home', username=request.POST['username'])
         else:
             messages.info(request,"Password MisMatch")
             return redirect('/')
@@ -31,12 +31,10 @@ def login(request):
         password1=request.POST['password1']
         get_users=User.objects.filter(username=username,password=password1)
         if len(get_users)>0:
-            return redirect('/home')
+            return redirect('/home', username=request.POST['username'])
         else:
             messages.info(request,"User Does Not Exist")
             return redirect('/login')
     else:
         return render(request,'login.html')
 
-def home(request):
-    return render(request,'home.html') 
