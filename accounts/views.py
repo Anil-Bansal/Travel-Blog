@@ -18,8 +18,8 @@ def register(request):
             else:
                 user=User(username=username, password=password1)
                 user.save()
-                url="/blogs/home/"+"username="+username
-                return redirect(url)
+                request.session['user']=username
+                return redirect('blogs/home')
         else:
             messages.info(request,"Password MisMatch")
             return redirect('/')
@@ -32,8 +32,8 @@ def login(request):
         password1=request.POST['password1']
         get_users=User.objects.filter(username=username,password=password1)
         if len(get_users)>0:
-            url="/blogs/home/"+"username="+username
-            return redirect(url)
+            request.session['user']=username
+            return redirect('blogs/home')
         else:
             messages.info(request,"User Does Not Exist")
             return redirect('/login')
@@ -41,4 +41,5 @@ def login(request):
         return render(request,'login.html')
 
 def signout(request):
+    del request.session['user']
     return redirect('/')

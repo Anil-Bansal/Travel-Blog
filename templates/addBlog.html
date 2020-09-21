@@ -5,16 +5,16 @@
     </head>
     <body>
         <ul>
-            <li><a href="/blogs/home/username={{user}}">Home</a></li>
-            <li><a href="/blogs/profile/username={{user}}">Profile</a></li>
+            <li><a href="/blogs/home">Home</a></li>
+            <li><a href="/blogs/profile">Profile</a></li>
             <li><a href={{request.get_full_path}}>Add Blog</a></li>
             <li><a href="/signout">Signout</a></li>
             <li>Hello, {{user}}</li>
         </ul>
-        <form action="/blogs/addblogs/username={{user}}/" method="post">
+        <form action="/blogs/addblogs" method="post">
             {% csrf_token %}
-            <input type="text" name="title" placeholder="title"><br>
-            <input type="text" name="description" placeholder="description"><br>
+            <input type="text" name="title" placeholder="title" required><br>
+            <input type="text" name="description" placeholder="description" required><br>
             <input type="submit"><br>
         </form>
     </body>
