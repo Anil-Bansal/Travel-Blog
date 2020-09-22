@@ -2,6 +2,8 @@ from django.shortcuts import get_object_or_404, redirect, render
 from .models import Blog
 # Create your views here.
 def home(request):
+    if 'user' not in request.session:
+        return redirect('/')
     username=request.session['user']
     blogs = Blog.objects.all().exclude(username=username)
     return render(request, 'home.html', {
@@ -10,6 +12,8 @@ def home(request):
     })
 
 def profile(request):
+    if 'user' not in request.session:
+        return redirect('/')
     username=request.session['user']
     blogs=Blog.objects.filter(username=username)
     return render(request, 'profile.html', {
@@ -18,6 +22,8 @@ def profile(request):
     })
 
 def addblogs(request):
+    if 'user' not in request.session:
+        return redirect('/')
     username=request.session['user']
     if request.method=='POST':
         title=request.POST['title']

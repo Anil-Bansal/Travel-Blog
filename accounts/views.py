@@ -6,6 +6,8 @@ from django.contrib import messages
 
 
 def register(request):
+    if 'user' in request.session:
+        return redirect('blogs/home')
     if request.method=='POST':
         username=request.POST['username']
         password1=request.POST['password1']
@@ -27,6 +29,8 @@ def register(request):
         return render(request,'register.html')
 
 def login(request):
+    if 'user' in request.session:
+        return redirect('blogs/home')
     if request.method=='POST':
         username=request.POST['username']
         password1=request.POST['password1']

@@ -11,6 +11,7 @@
         </div>
         <form action="login" method="post">
             <div class="box">
+              <h1>Login</h1>
             {% csrf_token %}
             <input type="text" name="username" placeholder="Username" required onFocus="field_focus(this, 'username');" onblur="field_blur(this, 'username');" class="username"><br>
             <input type="password" name="password1" placeholder="Password" required onFocus="field_focus(this, 'password1');" onblur="field_blur(this, 'password1');" class="password1" ><br>
