@@ -1,37 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Registration</title>
-    </head>
-    <body>       
-      <div class ="msg">
-        {% for message in messages %}
-        <h3> {{message}} </h3>
-        {% endfor %}
-    </div>
-
-    <form action="" method="post">
-    <div class="box">
-      <h1>Register</h1>
-      {% csrf_token %}
-      <input type="text" name="username" placeholder="Username" required onFocus="field_focus(this, 'username');" onblur="field_blur(this, 'username');" class="username" />
-      
-      <input type="password" name="password1" placeholder="Password" required onFocus="field_focus(this, 'password1');" onblur="field_blur(this, 'password1');" class="password1" />
-      <input type="password" name="password2" placeholder="Confirm Password" required onFocus="field_focus(this, 'password2');" onblur="field_blur(this, 'password2');" class="password2" />
-      
-      <input type="submit" class="btn"><br> <!-- End Btn -->
-      <a href="/login" class="btn">Click Here to Login</a>
-    </div>
-     <!-- End Btn2 -->
-    
-     <!-- End Box -->
-    
-    </form>
-    
-</body>
-<style type="text/css">
-    body{
+body{
     font-family: 'Open Sans', sans-serif;
     background:#3498db;
     margin: 0 auto 0 auto;  
@@ -55,19 +22,11 @@
     background:white;
     width:300px;
     border-radius:6px;
-    margin: 70px auto 100px auto;
+    margin: 0 auto 0 auto;
     padding:0px 0px 70px 0px;
     border: #2980b9 4px solid; 
   }
-  .msg
-  {
-    background:black;
-        color:white;
-        width:300px;
-        margin: 30px auto auto auto;
-        font-weight:600;
-        font-size:1.2em;
-  }
+  
   .username{
     background:#ecf0f1;
     border: #ccc 1px solid;
@@ -85,7 +44,6 @@
     background:#ecf0f1;
     border: #ccc 1px solid;
     padding: 8px;
-    margin-top:10px;
     width:250px;
     font-size:1em;
   }
@@ -94,22 +52,23 @@
     background:#ecf0f1;
     border: #ccc 1px solid;
     padding: 8px;
-    margin-top:10px;
     width:250px;
     font-size:1em;
   }
   
   .btn{
     background:#2ecc71;
-    width:100px;
-    padding: 5px 5px 5px 5px;
+    width:125px;
+    padding-top:5px;
+    padding-bottom:5px;
     color:white;
     border-radius:4px;
     border: #27ae60 1px solid;
+    
     margin-top:20px;
     margin-bottom:20px;
-    margin-left:auto;
-    margin-right:auto;
+    float:left;
+    margin-left:16px;
     font-weight:800;
     font-size:0.8em;
   }
@@ -137,5 +96,3 @@
   #btn2:hover{ 
   background:#3594D2; 
   }
-</style>
-</html>

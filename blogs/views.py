@@ -24,7 +24,7 @@ def addblogs(request):
         description=request.POST['description']
         blog=Blog(username=username,title=title,description=description)
         blog.save()
-        return redirect('blogs/profile')
+        return redirect('/blogs/profile')
     else:
         return render(request,'addblog.html',{
             'user': username

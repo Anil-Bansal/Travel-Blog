@@ -5,19 +5,210 @@
     </head>
     <body>
         
-        <ul>
-            <li><a href="/blogs/home">Home</a></li>
-            <li><a href={{request.get_full_path}}>Profile</a></li>
-            <li><a href="/blogs/addblogs">Add Blog</a></li>
-            <li><a href="/signout">Signout</a></li>
-            <li>Hello, {{user}}</li>
-        </ul>
+        <nav class='nav'>
+            <div class='container'>
+              <h3 class='nav-item nav-brand' >Hello, {{user}}</h3>
+              <button class='toggler'>
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+              <div class='nav-collapse'>
+                <a class='nav-item nav-link' href="/blogs/home">Home</a>
+                <a class='nav-item nav-link' href={{request.get_full_path}} >Profile</a>
+                <a class='nav-item nav-link' href="/blogs/addblogs">Add Blog</a>
+                <a class='nav-item nav-link' href="/signout">Signout</a>
+              </div>
+            </div>
+        </nav>
         {% for blog in blogs %}
+        <div class="container1">
+            <div class="square">
+              <div class="h1">{{blog.title}}</div>
+              <p class="byline">By {{blog.username}}</p>
+              <p>{{blog.description}}</p>
             
-			<p>{{blog.title}}</p>
-			<p>{{blog.description}}</p>
-			<p>By {{blog.username}}</p>
-		{% endfor %}
+            </div>
+        </div>    
+        {% endfor %}
         
     </body>
+    <style type="text/css">
+        @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+        * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Raleway', sans-serif;
+        box-sizing: border-box;
+        }
+        .container {
+        max-width: 920px;
+        margin: 0 auto;
+        padding: 0 1rem;
+        }
+        .nav {
+        background: #000;
+        width: 100%;
+        height: 55px;
+        overflow: hidden;
+        transition: height .5s ease-in-out;
+        }
+        .nav-brand, .nav-link, .nav-collapse {
+        display: inline-block;
+        }
+        .nav-brand, .nav-link {
+        color: #fff;
+        text-decoration: none;
+        line-height: 55px;
+        padding: 0 1rem;
+        opacity: 0.8;
+        cursor: pointer;
+        }
+        .nav-brand {
+        font-size: 1.25rem;
+        }
+        .nav-link {
+        font-size: 1rem;
+        }
+        .nav-collapse {
+        float: right;
+        }
+        .toggler {
+        float: right;
+        width: 40px;
+        height: 18px;
+        margin: 18.5px 0;
+        background: none;
+        border: none;
+        outline: none;
+        display: none;
+        opacity: 0.8;
+        }
+        .toggler span {
+        display: block;
+        width: 100%;
+        height: 1px;
+        background: #fff;
+        position: relative;
+        transition: .25s ease-in-out;
+        }
+        .toggler span:nth-child(1) {
+        top: -7.5px;
+        }
+        .toggler span:nth-child(2) {
+        top: 0;
+        }
+        .toggler span:nth-child(3) {
+        top: 7.5px;
+        }
+
+        .nav-brand:hover, .nav-link:hover, .toggler:hover, 
+        .nav-brand:focus, .nav-link:focus, .toggler:focus {
+        opacity: 1;
+        }
+
+        .nav.open .toggler span:nth-child(1) {
+        transform: translateY(8.5px) rotate(45deg);
+        }
+        .nav.open .toggler span:nth-child(2) {
+        transform: translateX(-100%);
+        width: 0;
+        opacity: 0;
+        }
+        .nav.open .toggler span:nth-child(3) {
+        transform: translateY(-8.5px) rotate(-45deg);
+        }
+        .nav.open {
+        height: 100vh;
+        }
+
+        @media (max-width: 767px) {
+        .nav-collapse, .nav-link {
+            float: none;
+            display: block;
+        }
+        .nav-link {
+            text-align: center;
+        }
+        .toggler {
+            display: block;
+        }
+        }
+        .container1{
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.square:hover {
+    -webkit-transform: translate(20px, -10px);
+    -ms-transform: translate(10px, -10px);
+    transform: translate(10px, -10px);
+    -webkit-box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+     }
+.byline{
+    margin-top: 15px;
+    margin-bottom: 40px;
+    font-size: medium;
+}
+
+.square{
+  width: 50%;
+	height: auto;
+	background: white;
+  border-radius: 4px;
+  padding-bottom: 30px;
+  box-shadow: 0px 20px 50px #D9DBDF;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease; 
+}
+
+.mask{
+  clip: rect(0px, 460px, 220px, 0px);
+  border-radius: 4px;
+  position: absolute;
+}
+
+img{
+  width: 460px;
+  }
+
+.h1{
+  margin: auto;
+  text-align: left;
+  margin-top: 80px;
+  padding-left: 30px;
+  
+  font-family: 'Merriweather', serif;
+  font-size: 24px;
+}
+p{
+ text-align: justify; 
+ padding-left: 30px;
+ padding-right: 30px;
+ font-family: 'Open Sans', sans-serif;
+ font-size: 12px;
+ color: black;
+ line-height: 18px;
+}
+
+.button {
+    background-color: #3EDD84;
+    color: white;
+    width: 90px;
+    padding: 10px 18px;
+    border-radius: 3px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-right: 70px;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: 'merriweather';
+}
+    </style>
 </html> 
