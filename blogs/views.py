@@ -6,6 +6,7 @@ def home(request):
         return redirect('/')
     username=request.session['user']
     blogs = Blog.objects.all().exclude(username=username)
+    blogs=blogs[::-1]
     return render(request, 'home.html', {
         'blogs': blogs,
         'user': username
@@ -16,6 +17,7 @@ def profile(request):
         return redirect('/')
     username=request.session['user']
     blogs=Blog.objects.filter(username=username)
+    blogs=blogs[::-1]
     return render(request, 'profile.html', {
         'blogs': blogs,
         'user': username
