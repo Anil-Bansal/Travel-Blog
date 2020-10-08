@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Home</title>
     </head>
     <body>
@@ -17,6 +18,12 @@
                 <a class='nav-item nav-link' href="/blogs/profile">Profile</a>
                 <a class='nav-item nav-link' href="/blogs/addblogs">Add Blog</a>
                 <a class='nav-item nav-link' href="/signout">Signout</a>
+                <div class="search-container">
+                  <form action="" method="post">
+                    <input type="text" placeholder="Search.." name="search">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                  </form>
+                </div>
               </div>
             </div>
         </nav>
@@ -42,6 +49,44 @@
         padding: 0;
         font-family: 'Raleway', sans-serif;
         box-sizing: border-box;
+        }
+        .nav .nav-collapse input[type=text] {
+          padding: 6px;
+          margin-top: 8px;
+          font-size: 17px;
+          border: none;
+        }
+        .nav .nav-collapse .search-container button:hover {
+          background: #ccc;
+        }
+        .nav .nav-collapse .search-container {
+          float: right;
+        }
+        .nav .nav-collapse .search-container button {
+          float: right;
+          padding: 6px 10px;
+          margin-top: 8px;
+          margin-right: 16px;
+          background: #ddd;
+          font-size: 17px;
+          border: none;
+          cursor: pointer;
+        }
+        @media screen and (max-width: 600px) {
+          .nav .nav-collapse .search-container {
+            float: none;
+          }
+          .nav .nav-collapse input[type=text], .nav .nav-collapse .search-container button {
+            float: none;
+            display: block;
+            text-align: left;
+            width: 100%;
+            margin: 0;
+            padding: 14px;
+          }
+          .nav .nav-collapse input[type=text] {
+            border: 1px solid #ccc;  
+          }
         }
         .container {
         max-width: 920px;
