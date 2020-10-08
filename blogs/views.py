@@ -2,15 +2,25 @@ from django.shortcuts import get_object_or_404, redirect, render
 from .models import Blog
 # Create your views here.
 def home(request):
-    if 'user' not in request.session:
-        return redirect('/')
-    username=request.session['user']
-    blogs = Blog.objects.all().exclude(username=username)
-    blogs=blogs[::-1]
-    return render(request, 'home.html', {
-        'blogs': blogs,
-        'user': username
-    })
+    if request.method=='POST':
+        username=request.session['user']
+        user=request.POST['search']
+        blogs=Blog.objects.filter(username=user)
+        blogs=blogs[::-1]
+        return render(request, 'home.html', {
+            'blogs': blogs,
+            'user': username
+        })
+    else:
+        if 'user' not in request.session:
+            return redirect('/')
+        username=request.session['user']
+        blogs = Blog.objects.all().exclude(username=username)
+        blogs=blogs[::-1]
+        return render(request, 'home.html', {
+            'blogs': blogs,
+            'user': username
+        })
 
 def profile(request):
     if 'user' not in request.session:

@@ -19,7 +19,8 @@
                 <a class='nav-item nav-link' href="/blogs/addblogs">Add Blog</a>
                 <a class='nav-item nav-link' href="/signout">Signout</a>
                 <div class="search-container">
-                  <form action="" method="post">
+                  <form action="/blogs/home" method="post">
+                    {% csrf_token %}
                     <input type="text" placeholder="Search.." name="search">
                     <button type="submit"><i class="fa fa-search"></i></button>
                   </form>
