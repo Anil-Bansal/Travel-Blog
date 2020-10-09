@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import User
+from  import LikedBlog
 from django.contrib import messages
+import simplejson as json
 
 # Create your views here.
 
@@ -20,6 +22,10 @@ def register(request):
             else:
                 user=User(username=username, password=password1)
                 user.save()
+                obj=LikedBlog(username=username)
+                cur_list=[]
+                obj.likedlist=json.dumps(cur_list)
+                obj.save()
                 request.session['user']=username
                 return redirect('blogs/home')
         else:
