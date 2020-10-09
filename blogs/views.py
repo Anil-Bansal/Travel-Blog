@@ -51,7 +51,8 @@ def addblogs(request):
     if request.method=='POST':
         title=request.POST['title']
         description=request.POST['description']
-        blog=Blog(username=username,title=title,description=description)
+        image=request.POST['image']
+        blog=Blog(username=username,title=title,description=description,image=image)
         blog.save()
         return redirect('/blogs/profile')
     else:
