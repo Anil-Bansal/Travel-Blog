@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import User
-from  import LikedBlog
+from blogs.models import LikedBlog
 from django.contrib import messages
-import simplejson as json
+import json
 
 # Create your views here.
 

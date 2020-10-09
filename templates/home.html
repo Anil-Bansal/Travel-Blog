@@ -35,7 +35,14 @@
               <div class="h1">{{blog.title}}</div>
               <p class="byline">By {{blog.username}}</p>
               <p>{{blog.description}}</p>
-            
+              <form action="/blogs/like_blog" method="POST">
+                {% csrf_token %}
+                {% if blog.id in likedlist %}
+                  <button type="submit" name="blog_id" value="{{ blog.id }}" class="btn btn-primmary btn-sm">DisLike</button>
+                {% else %}
+                  <button type="submit" name="blog_id" value="{{ blog.id }}" class="btn btn-primmary btn-sm">Like</button>
+                {% endif %}
+              </form>
             </div>
         </div>    
         {% endfor %}
