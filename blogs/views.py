@@ -80,4 +80,20 @@ def likeblog(request):
         'user': username,
         'likedlist': num_list
     })
+
+def favourite(request):
+    if 'user' not in request.session:
+        return redirect('/')
+    username=request.session['user']
+    blogs = Blog.objects.all().exclude(username=username)
+    blogs=blogs[::-1]
+    obj=LikedBlog.objects.filter(username=username)
+    jsonDec = json.decoder.JSONDecoder()
+    likedlist = jsonDec.decode(obj[0].likedlist)
+    num_list=[int(x) for x in likedlist]
+    return render(request, 'favourite.html', {
+        'blogs': blogs,
+        'user': username,
+        'likedlist': num_list
+    })
     

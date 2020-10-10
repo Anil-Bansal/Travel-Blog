@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Add Blog</title>
+        <title>Profile</title>
     </head>
     <body>
+        
         <nav class='nav'>
             <div class='container'>
               <h3 class='nav-item nav-brand' >Hello, {{user}}</h3>
@@ -14,33 +15,43 @@
               </button>
               <div class='nav-collapse'>
                 <a class='nav-item nav-link' href="/blogs/home">Home</a>
-                <a class='nav-item nav-link' href="/blogs/profile">Profile</a>
+                <a class='nav-item nav-link' href="/blogs/profile" >Profile</a>
                 <a class='nav-item nav-link' href="/blogs/favourite">Favourite</a>
-                <a class='nav-item nav-link' href={{request.get_full_path}}>Add Blog</a>
+                <a class='nav-item nav-link' href="/blogs/addblogs">Add Blog</a>
                 <a class='nav-item nav-link' href="/signout">Signout</a>
               </div>
             </div>
         </nav>
-        <h1 class="h1">Add Blog</h1>
-        <div class="addblog">
-            <form action="/blogs/addblogs" method="post" id="add">
-                {% csrf_token %}
+        {% for blog in blogs %}
+            {% if blog.id in likedlist %}
                 <div class="container1">
-                    <input type="text" name="title" placeholder="title" required class="username" ><br>
-                    <input type="text" name="image" placeholder="image" required class="username" ><br>
-                   <textarea form="add" name="description" placeholder="description" required class="username"></textarea><br>
+                    <div class="square">
+                    <div class="h1">{{blog.title}}</div>
+                    <img src="{{ blog.image }}" alt="Could not load image">
+                    <p class="byline">By {{blog.username}}</p>
+                    <p>{{blog.description}}</p>
+                    </div>
                 </div>
-                <input class="btn" type="submit"><br>
-            </form>
-        </div>
+            {% endif %}    
+        {% endfor %}
+        
     </body>
     <style type="text/css">
         @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+        @import url('https://fonts.googleapis.com/css?family=Merriweather|Open+Sans');
         * {
         margin: 0;
         padding: 0;
         font-family: 'Raleway', sans-serif;
         box-sizing: border-box;
+        }
+        img {
+          display: block;
+          margin-top: 10px;
+          margin-bottom: 10px;
+          margin-left: auto;
+          margin-right: auto;
+          width: 70%;
         }
         .container {
         max-width: 920px;
@@ -135,77 +146,74 @@
             display: block;
         }
         }
-    .container1{
-        background:rgba(255, 255, 255, 0.712);
-        width:300px;
-        border-radius:1px;
-        margin: 10px 100px 20px 100px;
-        padding:20px 20px 20px 20px;
-        border: #000000 1px solid; 
-    }
+        .container1{
+          display: flex;
+          justify-content: center;
+          padding: 40px;
+        }
 
+        .square:hover {
+            -webkit-transform: translate(20px, -10px);
+            -ms-transform: translate(10px, -10px);
+            transform: translate(10px, -10px);
+            -webkit-box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+        .byline{
+            margin-top: 15px;
+            margin-bottom: 40px;
+            font-size: medium;
+        }
 
-    .square{
-        width: 50%;
-        height: auto;
-        background: white;
-        border-radius: 4px;
-        padding-bottom: 30px;
-        box-shadow: 0px 20px 50px #D9DBDF;
-        -webkit-transition: all 0.3s ease;
-        -o-transition: all 0.3s ease;
-        transition: all 0.3s ease; 
-    }
+        .square{
+          width: 50%;
+          height: auto;
+          background: white;
+          border-radius: 4px;
+          padding-bottom: 30px;
+          box-shadow: 0px 20px 50px #D9DBDF;
+          -webkit-transition: all 0.3s ease;
+          -o-transition: all 0.3s ease;
+          transition: all 0.3s ease; 
+        }
 
-
-    .h1{
-        
-        text-align: left;
-        margin-top: 80px;
-        padding-left: 100px;
-        
-        font-family: 'Merriweather', serif;
-        font-size: 36px;
-    }
-    
-    .addblog{
-        display: flex;
-        justify-content: center;
-        padding: 40px;
-        width: 500px;
-        height: auto;
-        background: white;
-        border-radius: 4px;
-        border-color: grey;
-        border-width: 3px;
-    }
-    .title{
-        width:400px;
-    }
-    .username{
-        background:#ecf0f1;
-        border: #ccc 1px solid;
-        border-bottom: #ccc 2px solid;
-        padding: 8px;
-        width:250px;
-        color:#AAAAAA;
-        margin-top:10px;
-        font-size:1em;
-        border-radius:4px;
-  }
-  .btn{
-    background: black;
-    width:100px;
-    padding: 5px 5px 5px 5px;
-    color:white;
-    border-radius:4px;
-    border: #27ae60 1px solid;
-    margin-top:20px;
-    margin-bottom:20px;
-    margin-left:100px;
-    margin-right:auto;
-    font-weight:800;
-    font-size:0.8em;
-  }
+        .mask{
+          clip: rect(0px, 460px, 220px, 0px);
+          border-radius: 4px;
+          position: absolute;
+        }
+        .h1{
+          margin: auto;
+          text-align: left;
+          margin-top: 80px;
+          padding-left: 30px;
+          font-family: 'Merriweather', serif;
+          font-size: 24px;
+        }
+        p{
+          text-align: justify; 
+          padding-left: 30px;
+          padding-right: 30px;
+          font-family: 'Open Sans', sans-serif;
+          font-size: 12px;
+          color: black;
+          line-height: 18px;
+        }
+        .button {
+            background-color: #3EDD84;
+            color: white;
+            width: 90px;
+            padding: 10px 18px;
+            border-radius: 3px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            margin-top: 20px;
+            margin-left: 30px;
+            margin-right: 70px;
+            font-size: 12px;
+            cursor: pointer;
+            font-family: 'merriweather';
+        }
     </style>
-</html>
+</html> 
