@@ -61,7 +61,7 @@ def addblogs(request):
         })
 
 def likeblog(request):
-    id=request.POST['blog_id']
+    id=request.POST.get('blog_id', False)
     username=request.session['user']
     blogs = Blog.objects.all().exclude(username=username)
     blogs=blogs[::-1]
