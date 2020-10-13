@@ -3,7 +3,8 @@
     <head>
         <title>Add Blog</title>
     </head>
-    <body>
+    <body style="background-image: url('https://image.freepik.com/free-vector/travel-pattern-background_23-2148043441.jpg');background-color: rgba(255,255,255,0.5);
+    background-blend-mode: lighten;">
         <nav class='nav'>
             <div class='container'>
               <h3 class='nav-item nav-brand' >Hello, {{user}}</h3>
@@ -21,18 +22,21 @@
               </div>
             </div>
         </nav>
-        <h1 class="h1">Add Blog</h1>
+        <div class="container1">
         <div class="addblog">
+        <h1 class="h1">Add Blog</h1>
+        
             <form action="/blogs/addblogs" method="post" id="add">
                 {% csrf_token %}
-                <div class="container1">
+                
                     <input type="text" name="title" placeholder="title" required class="username" ><br>
                     <input type="text" name="image" placeholder="image" required class="username" ><br>
                    <textarea form="add" name="description" placeholder="description" required class="username"></textarea><br>
-                </div>
+                
                 <input class="btn" type="submit"><br>
             </form>
         </div>
+    </div>
     </body>
     <style type="text/css">
         @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
@@ -136,12 +140,9 @@
         }
         }
     .container1{
-        background:rgba(255, 255, 255, 0.712);
-        width:300px;
-        border-radius:1px;
-        margin: 10px 100px 20px 100px;
-        padding:20px 20px 20px 20px;
-        border: #000000 1px solid; 
+        display: flex;
+          justify-content: center;
+          padding: 40px;
     }
 
 
@@ -162,22 +163,22 @@
         
         text-align: left;
         margin-top: 80px;
-        padding-left: 100px;
+        padding-left: 50px;
         
         font-family: 'Merriweather', serif;
         font-size: 36px;
     }
     
     .addblog{
-        display: flex;
-        justify-content: center;
-        padding: 40px;
-        width: 500px;
-        height: auto;
-        background: white;
-        border-radius: 4px;
-        border-color: grey;
-        border-width: 3px;
+        width: 50%;
+          height: auto;
+          background: white;
+          border: solid rgb(0, 0, 0);
+          border-radius: 2px;
+          border-width: 2px;
+          padding-left: 165px;
+          padding-right: auto;
+          padding-bottom: 30px;
     }
     .title{
         width:400px;
@@ -202,7 +203,7 @@
     border: #27ae60 1px solid;
     margin-top:20px;
     margin-bottom:20px;
-    margin-left:100px;
+    margin-left:74px;
     margin-right:auto;
     font-weight:800;
     font-size:0.8em;
